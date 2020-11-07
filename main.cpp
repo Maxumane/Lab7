@@ -80,20 +80,26 @@ int main () {
     vector <Course>::iterator itBegin = courseList.begin();
     vector<Course>::iterator itEnd = courseList.end();
     sort(courseList.begin(), courseList.end());
-
-    multiset<Course> courseSet;
     for (Course c : courseList)
     {
-        courseSet.insert(c);
+        cout << c;
     }
 
-    for(auto i = courseSet.begin(); i != courseSet.end(); ++i)
-    {
-        if (i->Collision(*(i)) {
-            cout <<
-        }
-        cout << *i << " ";
-    }
+
+//    multiset<Course> courseSet;
+//    for (Course c : courseList)
+//    {
+//        courseSet.insert(c);
+//    }
+
+//
+//    for(set<Course>::iterator i = courseSet.begin(); i != courseSet.end(); ++i)
+//    {
+//        if (i->Collision(*i+1)) {
+//            cout <<
+//        }
+//        cout << *i << " ";
+//    }
 
 
 
