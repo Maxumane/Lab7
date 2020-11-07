@@ -41,9 +41,10 @@ bool Course::Collision(Course m) const {
         return false;
     }
 
-    if ((start_time >= m.start_time && start_time <= m.finish_time) || (start_time <= m.start_time && finish_time >= m.finish_time && finish_time > m.start_time)) {
+    if((start_time >= m.start_time && start_time <= m.finish_time) || (m.start_time >= start_time && m.start_time <= finish_time)) {
         return true;
     }
+
     return false;
 }
 

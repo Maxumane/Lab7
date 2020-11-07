@@ -22,7 +22,7 @@ void printSchedule(vector<Course> a)
     for(auto i = a.begin(); i != a.end(); ++i) {
         for (auto b = i; b != a.end(); ++b) {
             if (i->Collision(*(b))) {
-                cout << "Collision Here:" << endl;
+                cout << "CONFLICT:" << endl;
                 cout << *i;
                 cout << *(i + counter);
                 cout << endl;
@@ -34,7 +34,7 @@ void printSchedule(vector<Course> a)
 
     copy(a.begin(), //istream_iterator points to 0.1
          a.end(), //end-of-stream iterator, similar to vector.end()
-         ostream_iterator<Course>(cout, "\n"));
+         ostream_iterator<Course>(cout, ""));
 
 
 }
