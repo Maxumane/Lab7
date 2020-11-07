@@ -7,6 +7,7 @@
 #include <sstream>
 #include <stdio.h>
 #include <stdlib.h>
+#include <set>
 #include "Course.hpp"
 
 using namespace std;
@@ -21,18 +22,8 @@ void printSchedule()
 }
 
 int main () {
+
     //TODO read from courses.txt
-
-//    while (getline(courseText, wholetext)) {
-//        string title;
-//        string day;
-//        int start;
-//        int end;
-//        istringstream lineText (wholetext);
-//        lineText >> title >> day >> start >> end;
-//        cout << wholetext;
-//    }
-
     //TODO store data in an STL container
     //TODO sort your STL container with the sort algorithm
     //TODO implement code to determine schedule conflicts
@@ -40,49 +31,72 @@ int main () {
     //TODO print out schedule
     string wholetext;
     stringstream courseLine;
-    int n;
-    int d;
+    string t;
+    string d;
+    vector<Course> courseList;
+    int s;
+    int f;
     int count = 0;
     ifstream courseText;
     courseText.open("../courses.txt");
 
     if(!courseText.is_open()) {
         cerr << "Unable" << endl;
+        return 1;
     }
+
     while (getline(courseText, wholetext)) {
-
-        stringstream ss;
-
-        /* Storing the whole string into string stream */
-        ss << wholetext;
-
-        /* Running loop till the end of the stream */
-        string temp;
-        int time;
-        int numCount = 0;
-        while (!ss.eof()) {
-
-            /* extracting word by word from stream */
-            ss >> temp;
-
-            /* Checking the given word is integer or not */
-            if (stringstream(temp) >> time) {
-                if (numCount == 0) {
-                    cout << time << " ";
-                    numCount++;
-                }
-                if (numCount == 0) {
-                    cout << time << " ";
-                    numCount++;
-                }
+            courseText.clear();
+            courseLine.str(wholetext);
+            Course j;
+            string title;
+            string day;
+            unsigned int startTime;
+            unsigned int finishTime;
+            courseLine >> title >> day >> startTime >> finishTime;
+            j.title = title;
+            j.start_time = startTime;
+            j.finish_time = finishTime;
+            Course::dayOfWeek TrueDay;
+            if(day == "M") {
+                j.day = Course::dayOfWeek::MON;
             }
-
-            /* To save from space at the end of string */
-            temp = "";
-        }
-        cout << endl;
+            if(day == "T") {
+                j.day = Course::dayOfWeek::TUE;
+            }
+            if(day == "W") {
+                j.day = Course::dayOfWeek::WED;
+            }
+            if(day == "R") {
+                j.day = Course::dayOfWeek::THUR;
+            }
+            if(day == "W") {
+                j.day = Course::dayOfWeek::FRI;
+            }
+        courseList.push_back(j);
     }
     courseText.close();
+
+    vector <Course>::iterator itBegin = courseList.begin();
+    vector<Course>::iterator itEnd = courseList.end();
+    sort(courseList.begin(), courseList.end());
+
+    multiset<Course> courseSet;
+    for (Course c : courseList)
+    {
+        courseSet.insert(c);
+    }
+
+    for(auto i = courseSet.begin(); i != courseSet.end(); ++i)
+    {
+        if (i->Collision(*(i)) {
+            cout <<
+        }
+        cout << *i << " ";
+    }
+
+
+
     cout << "Find the TODOs in the code and implement them." << endl;
     cout << "Add/modify any functions/code you need to complete your task." << endl;
     return 0;
