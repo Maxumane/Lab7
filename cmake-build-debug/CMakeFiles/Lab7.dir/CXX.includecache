@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/cygdrive/c/Users/Max/Documents/CST3-Resources/OOP/Lab71/Lab7 Skeleton/Lab7/Course.hpp
+iostream
+-
+
+/cygdrive/c/Users/Max/Documents/CST3-Resources/OOP/Lab71/Lab7 Skeleton/Lab7/main.cpp
+iostream
+-
+vector
+-
+algorithm
+-
+iterator
+-
+fstream
+-
+string
+-
+sstream
+-
+stdio.h
+-
+stdlib.h
+-
+Course.hpp
+/cygdrive/c/Users/Max/Documents/CST3-Resources/OOP/Lab71/Lab7 Skeleton/Lab7/Course.hpp
+
