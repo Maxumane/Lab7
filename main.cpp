@@ -24,7 +24,7 @@ void printSchedule(vector<Course> a)
             if (i->Collision(*(b))) {
                 cout << "CONFLICT:" << endl;
                 cout << *i;
-                cout << *(i + counter);
+                cout << *b;
                 cout << endl;
             }
 
