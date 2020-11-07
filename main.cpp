@@ -16,9 +16,27 @@ using namespace std;
  * print schedule - outputs course schedule to the screen
  * @param - add any new parameters you need
  */
-void printSchedule()
+void printSchedule(vector<Course> a)
 {
-    //TODO implement your print using the copy algorithm, 2 iterators, and an ostream_iterator
+    int counter = 1;
+    for(auto i = a.begin(); i != a.end(); ++i) {
+        for (auto b = i; b != a.end(); ++b) {
+            if (i->Collision(*(b))) {
+                cout << "Collision Here:" << endl;
+                cout << *i;
+                cout << *(i + counter);
+                cout << endl;
+            }
+
+        }
+    }
+
+
+    copy(a.begin(), //istream_iterator points to 0.1
+         a.end(), //end-of-stream iterator, similar to vector.end()
+         ostream_iterator<Course>(cout, "\n"));
+
+
 }
 
 int main () {
@@ -70,7 +88,7 @@ int main () {
             if(day == "R") {
                 j.day = Course::dayOfWeek::THUR;
             }
-            if(day == "W") {
+            if(day == "F") {
                 j.day = Course::dayOfWeek::FRI;
             }
         courseList.push_back(j);
@@ -80,28 +98,22 @@ int main () {
     vector <Course>::iterator itBegin = courseList.begin();
     vector<Course>::iterator itEnd = courseList.end();
     sort(courseList.begin(), courseList.end());
-    for (Course c : courseList)
-    {
-        cout << c;
-    }
 
-
-//    multiset<Course> courseSet;
-//    for (Course c : courseList)
-//    {
-//        courseSet.insert(c);
-//    }
-
+//    int counter = 1;
+//    for(auto i = courseList.begin(); i != courseList.end(); ++i) {
+//        for (auto b = i; b != courseList.end(); ++b) {
+//            if (i->Collision(*(b))) {
+//                cout << "Collision Here:" << endl;
+//                cout << *i;
+//                cout << *(i + counter);
+//                cout << endl;
+//            }
 //
-//    for(set<Course>::iterator i = courseSet.begin(); i != courseSet.end(); ++i)
-//    {
-//        if (i->Collision(*i+1)) {
-//            cout <<
 //        }
-//        cout << *i << " ";
 //    }
 
 
+    printSchedule(courseList);
 
     cout << "Find the TODOs in the code and implement them." << endl;
     cout << "Add/modify any functions/code you need to complete your task." << endl;

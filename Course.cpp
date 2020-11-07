@@ -20,7 +20,7 @@ Course::Course (const Course & m) : title (m.title), day (m.day), start_time (m.
 }
 
 Course & Course::operator =(Course m) {
-    //TODO implement the operator
+    mySwap(*this, m);
     return *this;
 }
 bool Course::operator == (const Course & m) const {
@@ -33,11 +33,15 @@ bool Course::operator == (const Course & m) const {
 
 bool Course::Collision(Course m) const {
 
+    if (*this == m) {
+        return false;
+    }
+
     if (day != m.day) {
         return false;
     }
 
-    if ((start_time >= m.start_time && start_time <= m.finish_time) || (start_time <= m.start_time && start_time >= m.finish_time)) {
+    if ((start_time >= m.start_time && start_time <= m.finish_time) || (start_time <= m.start_time && finish_time >= m.finish_time && finish_time > m.start_time)) {
         return true;
     }
     return false;
